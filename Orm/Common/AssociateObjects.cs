@@ -10,8 +10,9 @@ namespace OrmCommon
         public string Name { get; set; }
 
         [OrderBy("Id DESC")]
-        protected HasOne<PersonalComputer> mPC { get; set; }
+        public HasOne<PersonalComputer> mPC { get; private set; }
 
+        [Exclude]
         public PersonalComputer PC
         {
             get { return mPC.Value; }
@@ -26,8 +27,9 @@ namespace OrmCommon
         public string Name { get; set; }
 
         [DbColumn("Person_Id")]
-        protected BelongsTo<Person, long> mOwner { get; set; }
+        public BelongsTo<Person, long> mOwner { get; private set; }
 
+        [Exclude]
         public Person Owner
         {
             get { return mOwner.Value; }
@@ -42,8 +44,9 @@ namespace OrmCommon
         public string Name { get; set; }
 
         [DbColumn("Category_Id")]
-        protected BelongsTo<Category, long> mCategory { get; set; }
+        public BelongsTo<Category, long> mCategory { get; private set; }
 
+        [Exclude]
         public Category Category
         {
             get { return mCategory.Value; }
