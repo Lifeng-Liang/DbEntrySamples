@@ -95,10 +95,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Leafing.Core">
-      <HintPath>$(DbEntryPath)\Leafing.Core.dll</HintPath>
+      <HintPath>..\..\Imports\Leafing.Core.dll</HintPath>
     </Reference>
     <Reference Include="Leafing.Data">
-      <HintPath>$(DbEntryPath)\Leafing.Data.dll</HintPath>
+      <HintPath>..\..\Imports\Leafing.Data.dll</HintPath>
     </Reference>
     <Reference Include="System">
       <Name>System</Name>

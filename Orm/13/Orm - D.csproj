@@ -36,10 +36,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Leafing.Core">
-      <HintPath>$(DbEntryPath)\Leafing.Core.dll</HintPath>
+      <HintPath>..\..\Imports\Leafing.Core.dll</HintPath>
     </Reference>
     <Reference Include="Leafing.Data">
-      <HintPath>$(DbEntryPath)\Leafing.Data.dll</HintPath>
+      <HintPath>..\..\Imports\Leafing.Data.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -61,10 +61,6 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <UsingTask TaskName="ProcessorTask" AssemblyFile="$(DbEntryPath)\Leafing.MSBuild.dll" />
-  <Target Name="AfterCompile">
-    <ProcessorTask KeyFile="$(KeyOriginatorFile)" ProjectDir="$(ProjectDir)" AssemblyName="@(IntermediateAssembly)" ReferenceFiles="@(ReferencePath)" />
-  </Target>
   <PropertyGroup>
     <PostBuildEvent>copy *.dll ..\..\..\..\bin\ /y
 copy *.exe ..\..\..\..\bin\ /y

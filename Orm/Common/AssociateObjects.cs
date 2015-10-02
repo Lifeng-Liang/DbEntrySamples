@@ -9,8 +9,14 @@ namespace OrmCommon
         [Length(50)]
         public string Name { get; set; }
 
-        [HasOne(OrderBy = "Id DESC")]
-        public PersonalComputer PC { get; set; }
+        [OrderBy("Id DESC")]
+        protected HasOne<PersonalComputer> mPC { get; set; }
+
+        public PersonalComputer PC
+        {
+            get { return mPC.Value; }
+            set { mPC.Value = value; }
+        }
     }
 
     [DbTable("PCs")]
@@ -19,8 +25,14 @@ namespace OrmCommon
         [Length(50)]
         public string Name { get; set; }
 
-        [BelongsTo, DbColumn("Person_Id")]
-        public Person Owner { get; set; }
+        [DbColumn("Person_Id")]
+        protected BelongsTo<Person, long> mOwner { get; set; }
+
+        public Person Owner
+        {
+            get { return mOwner.Value; }
+            set { mOwner.Value = value; }
+        }
     }
 
     [DbTable("Books")]
@@ -29,8 +41,14 @@ namespace OrmCommon
         [Length(50)]
         public string Name { get; set; }
 
-        [BelongsTo, DbColumn("Category_Id")]
-        public Category Category { get; set; }
+        [DbColumn("Category_Id")]
+        protected BelongsTo<Category, long> mCategory { get; set; }
+
+        public Category Category
+        {
+            get { return mCategory.Value; }
+            set { mCategory.Value = value; }
+        }
     }
 
     [DbTable("Categories")]
@@ -39,23 +57,23 @@ namespace OrmCommon
         [Length(50)]
         public string Name { get; set; }
 
-        [HasMany(OrderBy = "Id")]
-        public IList<Book> Books { get; private set; }
+        [OrderBy("Id")]
+        public HasMany<Book> Books { get; private set; }
     }
 
     public class Article : DbObjectModel<Article>
     {
         public string Name { get; set; }
 
-        [HasAndBelongsToMany(OrderBy = "Id")]
-        public IList<Reader> Readers { get; private set; }
+        [OrderBy("Id")]
+        public HasAndBelongsToMany<Reader> Readers { get; private set; }
     }
 
     public class Reader : DbObjectModel<Reader>
     {
         public string Name { get; set; }
 
-        [HasAndBelongsToMany(OrderBy = "Id")]
-        public IList<Article> Articles { get; private set; }
+        [OrderBy("Id")]
+        public HasAndBelongsToMany<Article> Articles { get; private set; }
     }
 }

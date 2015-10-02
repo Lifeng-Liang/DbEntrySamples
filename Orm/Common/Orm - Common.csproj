@@ -95,13 +95,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Leafing.Core">
-      <HintPath>$(DbEntryPath)\Leafing.Core.dll</HintPath>
+      <HintPath>..\..\Imports\Leafing.Core.dll</HintPath>
     </Reference>
     <Reference Include="Leafing.Data">
-      <HintPath>$(DbEntryPath)\Leafing.Data.dll</HintPath>
+      <HintPath>..\..\Imports\Leafing.Data.dll</HintPath>
     </Reference>
     <Reference Include="Leafing.Extra">
-      <HintPath>$(DbEntryPath)\Leafing.Extra.dll</HintPath>
+      <HintPath>..\..\Imports\Leafing.Extra.dll</HintPath>
     </Reference>
     <Reference Include="System">
       <Name>System</Name>
@@ -164,8 +164,4 @@
     <PostBuildEvent>copy *.dll ..\..\..\..\bin\ /y
 </PostBuildEvent>
   </PropertyGroup>
-  <UsingTask TaskName="ProcessorTask" AssemblyFile="$(DbEntryPath)\Leafing.MSBuild.dll" />
-  <Target Name="AfterCompile">
-    <ProcessorTask KeyFile="$(KeyOriginatorFile)" ProjectDir="$(ProjectDir)" AssemblyName="@(IntermediateAssembly)" ReferenceFiles="@(ReferencePath)" />
-  </Target>
 </Project>
